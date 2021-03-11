@@ -25,18 +25,17 @@ temp = list()
 tmp = list()
 counter = 1
 for element in table:
-	if element == '':
-		continue
-	tmp.append(element)
-	if counter % 4 == 0:
-		temp.append(tmp)
-		tmp = list()
-	counter += 1
+    if element == '':
+        continue
+    tmp.append(element)
+    if counter % 4 == 0:
+        temp.append(tmp)
+        tmp = list()
+    counter += 1
 
 indices = dict()
 for x in range(1, len(temp)):
-	indices[temp[x].pop(0)] = temp[x]
+    indices[temp[x].pop(0)] = temp[x]
 
 print(indices)
-JsonHandler.setJsonObject(indices, "../target/indices.json")
-
+JsonHandler.setJsonObject(indices, "/../target/indices.json")
