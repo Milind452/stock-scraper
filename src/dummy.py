@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 import JsonHandler
 
@@ -17,9 +18,24 @@ pageBody = soup.body.text
 # print("********************************")
 # print(pageBody)
 
-# for table in soup.select('table'):
-#     print(table)
-#     print("****************************************")
-
 table = soup.select('table')[1].text
-print(type(table))
+
+table = list(table.split('\n'))
+temp = list()
+tmp = list()
+counter = 1
+for element in table:
+	if element == '':
+		continue
+	tmp.append(element)
+	if counter % 4 == 0:
+		temp.append(tmp)
+		tmp = list()
+	counter += 1
+
+indices = dict()
+for x in range(1, len(temp)):
+	indices[temp[x].pop(0)] = temp[x]
+
+print(indices)
+
