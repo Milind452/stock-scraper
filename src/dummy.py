@@ -38,4 +38,5 @@ for x in range(1, len(temp)):
 	indices[temp[x].pop(0)] = temp[x]
 
 print(indices)
+JsonHandler.setJsonObject(indices, "../target/indices.json")
 
