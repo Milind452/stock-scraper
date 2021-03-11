@@ -4,16 +4,16 @@ import json
 def getCurrentWorkingDirectory():
 	return os.path.dirname(os.path.realpath(__file__));
 
-def getAllEndpoints():
-	path = getCurrentWorkingDirectory() + '/../resources/endpoints.json'
+def getJsonObject(relativePath):
+	path = getCurrentWorkingDirectory() + relativePath
 	with open(path) as inputJson:
 		endpoints = json.load(inputJson)
 		return endpoints
 
-def getEndpoint(endpoint):
-	endpointDict = getAllEndpoints()
-	return endpointDict[endpoint]
+def getJsonItem(item, relativePath):
+	jsonObject = getJsonObject(relativePath)
+	return jsonObject[item]
 
 # print(getCurrentWorkingDirectory())
-# print(type(getAllEndpoints()), getAllEndpoints())
-# print(getEndpoint("home"))
+# print(type(getJsonObject('/../resources/endpoints.json')), type(getJsonItem('home', '/../resources/endpoints.json')))
+# print(getJsonObject('/../resources/endpoints.json'), getJsonItem('home', '/../resources/endpoints.json'))
