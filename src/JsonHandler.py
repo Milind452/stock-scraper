@@ -7,8 +7,8 @@ def getCurrentWorkingDirectory():
 def getJsonObject(relativePath):
 	path = getCurrentWorkingDirectory() + relativePath
 	with open(path) as inputJson:
-		endpoints = json.load(inputJson)
-		return endpoints
+		jsonObject = json.load(inputJson)
+		return jsonObject
 
 def getJsonItem(item, relativePath):
 	jsonObject = getJsonObject(relativePath)
