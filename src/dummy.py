@@ -4,7 +4,7 @@ import re
 
 import JsonHandler
 
-home = JsonHandler.getEndpoint('home')
+home = JsonHandler.getJsonItem('home', '/../resources/endpoints.json')
 page = requests.get(home)
 soup = BeautifulSoup(page.content, 'html.parser')
 
