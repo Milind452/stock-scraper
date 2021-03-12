@@ -3,19 +3,19 @@ from bs4 import BeautifulSoup
 
 class scraper:
 	def __init__(self, url):
-		pass
+		self.url = url
 
 	def getHtml(self):
-		pass
+		return requests.get(self.url)
 
 	def getSoup(self):
-		pass
+		return BeautifulSoup(self.getHtml().content, 'html.parser')
 
 	def getTitle(self):
-		pass
+		return self.getSoup.title.text
 
 	def getHead(self):
-		pass
+		return self.getSoup.head.text
 
 	def getBody(self):
-		pass
+		return self.getSoup.body.text
