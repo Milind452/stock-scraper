@@ -35,7 +35,20 @@ class Scraper:
 			if data == []:
 				continue
 			results[data[0].text] = [element.text for element in data[1:]]
+		return results
 
+	def getTableByAttribute(self, attribute, asDict = True):
+		tables = self.getSoup().find('table', attrs = attribute).text
+		if not asDict:
+			return tables
+
+		tables = self.getSoup().find('table', attrs = attribute)
+		results = dict()
+		for row in tables.find_all('tr'):
+			data = row.findAll('td')
+			if data == []:
+				continue
+			results[data[0].text] = [element.text for element in data[1:]]
 		return results
 
 	def getAllAnchors(self):
@@ -50,5 +63,6 @@ if __name__ == '__main__':
 	# print(scraper.getBody())
 	# print(scraper.getAllTables())
 	# print(scraper.getAllAnchors())
-	print(scraper.getTableByIndex(1))
+	# print(scraper.getTableByIndex(1), False)
+	print(scraper.getTableByAttribute({'class' : 'mctable1'}))
 
