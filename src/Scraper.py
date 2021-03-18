@@ -67,14 +67,14 @@ class Scraper:
 		return anchor.text
 
 	def getAllDivs(self):
-		pass
+		return self.getSoup().find_all('div')
 
 	def getDivByIndex(self, index, asText = True):
 		pass
 
 	def getDivByAttribute(self, attribute, astext = True):
 		pass
-	
+
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
@@ -84,4 +84,5 @@ if __name__ == '__main__':
 	# print(scraper.getAllAnchors())
 	# print(scraper.getAnchorByIndex(10, False))
 	# print(scraper.getAnchorByAttribute({'title' : 'Personal Tech'}))
+	print(scraper.getAllDivs())
 
