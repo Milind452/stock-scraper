@@ -66,17 +66,22 @@ class Scraper:
 			return anchor
 		return anchor.text
 
+	def getAllDivs(self):
+		pass
+
+	def getDivByIndex(self, index, asText = True):
+		pass
+
+	def getDivByAttribute(self, attribute, astext = True):
+		pass
+	
+
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
-	# print(scraper.getTitle())
-	# print('**************************')
-	# print(scraper.getHead())
-	# print('**************************')
-	# print(scraper.getBody())
 	# print(scraper.getAllTables())
 	# print(scraper.getTableByIndex(1), False)
 	# print(scraper.getTableByAttribute({'class' : 'mctable1'}))
 	# print(scraper.getAllAnchors())
 	# print(scraper.getAnchorByIndex(10, False))
-	print(scraper.getAnchorByAttribute({'title' : 'Personal Tech'}))
+	# print(scraper.getAnchorByAttribute({'title' : 'Personal Tech'}))
 
