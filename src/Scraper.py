@@ -52,7 +52,8 @@ class Scraper:
 		return results
 
 	def getAllAnchors(self):
-		return self.getSoup().select('a')
+		return self.getSoup().findAll('a')
+
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
@@ -62,7 +63,7 @@ if __name__ == '__main__':
 	# print('**************************')
 	# print(scraper.getBody())
 	# print(scraper.getAllTables())
-	# print(scraper.getAllAnchors())
 	# print(scraper.getTableByIndex(1), False)
-	print(scraper.getTableByAttribute({'class' : 'mctable1'}))
+	# print(scraper.getTableByAttribute({'class' : 'mctable1'}))
+	print(scraper.getAllAnchors())
 
