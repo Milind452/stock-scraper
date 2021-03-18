@@ -69,8 +69,9 @@ class Scraper:
 	def getAllDivs(self):
 		return self.getSoup().find_all('div')
 
-	def getDivByIndex(self, index, asText = True):
-		pass
+	def getDivByIndex(self, index):
+		divs = self.getAllDivs()[index]
+		return divs
 
 	def getDivByAttribute(self, attribute, astext = True):
 		pass
@@ -84,5 +85,6 @@ if __name__ == '__main__':
 	# print(scraper.getAllAnchors())
 	# print(scraper.getAnchorByIndex(10, False))
 	# print(scraper.getAnchorByAttribute({'title' : 'Personal Tech'}))
-	print(scraper.getAllDivs())
+	# print(scraper.getAllDivs())
+	print(scraper.getDivByIndex(0))
 
