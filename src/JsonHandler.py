@@ -2,7 +2,7 @@ import os
 import json
 
 def getCurrentWorkingDirectory():
-	return os.path.dirname(os.path.realpath(__file__));
+	return os.path.dirname(os.path.realpath(__file__))
 
 def getJsonObject(relativePath):
 	path = getCurrentWorkingDirectory() + relativePath
