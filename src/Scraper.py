@@ -61,7 +61,7 @@ class Scraper:
 		return anchor.text
 
 	def getAnchorByAttribute(self, attribute, asText = True):
-		anchor =  self.getSoup().find('a', attribute)
+		anchor =  self.getSoup().find('a', attrs = attribute)
 		if not asText:
 			return anchor
 		return anchor.text
@@ -70,11 +70,12 @@ class Scraper:
 		return self.getSoup().find_all('div')
 
 	def getDivByIndex(self, index):
-		divs = self.getAllDivs()[index]
-		return divs
+		div = self.getAllDivs()[index]
+		return div
 
-	def getDivByAttribute(self, attribute, astext = True):
-		pass
+	def getDivByAttribute(self, attribute):
+		div = self.getSoup().find('div', attrs = attribute)
+		return div
 
 
 if __name__ == '__main__':
@@ -86,5 +87,6 @@ if __name__ == '__main__':
 	# print(scraper.getAnchorByIndex(10, False))
 	# print(scraper.getAnchorByAttribute({'title' : 'Personal Tech'}))
 	# print(scraper.getAllDivs())
-	print(scraper.getDivByIndex(0))
+	# print(scraper.getDivByIndex(0))
+	print(scraper.getDivByAttribute({'id' : 'mcloginpopup'}))
 
