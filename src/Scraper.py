@@ -81,6 +81,21 @@ class Scraper:
 			return div
 		return div.text
 
+	def getAllSpans(self):
+		return self.getSoup().find_all('span')
+
+	def getSpanByIndex(self, index, asText = True):
+		span = self.getAllSpans()[index]
+		if not asText:
+			return span
+		return span.text
+
+	def getSpanByAttribute(self, attribute, asText = True):
+		span = self.getSoup().find('span', attrs = attribute)
+		if not asText:
+			return span
+		return span.text
+
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
@@ -92,5 +107,8 @@ if __name__ == '__main__':
 	# print(scraper.getAnchorByAttribute({'title' : 'Personal Tech'}))
 	# print(scraper.getAllDivs())
 	# print(scraper.getDivByIndex(0))
-	print(scraper.getDivByIndex(0))
+	# print(scraper.getDivByIndex(0))
+	# print(scraper.getAllSpans())
+	# print(scraper.getSpanByIndex(0, False))
+	print(scraper.getSpanByAttribute({'class' : 'open_hamburger'}, False))
 
