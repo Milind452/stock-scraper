@@ -175,12 +175,14 @@ class Scraper:
 			results[dt.text] = dd.text
 		return results
 
+	def getAllImages(self):
+		return self.getSoup().find_all('img')
+
+
 
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
-	# print(scraper.getAllTables()[1])
-	print(scraper.getTableByIndex(1))
-	print(scraper.getTableByAttribute({'class' : 'mctable1'}))
+	print(scraper.getAllImages()[0])
 	
 
