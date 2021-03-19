@@ -146,9 +146,35 @@ class Scraper:
 			results.append(li.text.strip())
 		return results
 
+	def getAllDescriptionLists(self):
+		return self.getSoup().find_all('dl')
+
+	def getDescriptionListByIndex(self, index, asDict = True):
+		descriptionList = self.getAllDescriptionLists()[index]
+		if not asDict:
+			return descriptionList
+		results = dict()
+		for dt, dd in zip(descriptionList.find_all('dt'), descriptionList.find_all('dd')):
+			if dt == [] or dd == []:
+				continue
+			results[dt.text] = dd.text
+		return results
+
+	def getDescriptionListByAttribute(self, attribute, asList = True):
+		descriptionList = self.getSoup().find('dl', attrs = attribute)
+		if not asList:
+			return descriptionList
+		results = list()
+		for dt, dd in zip(descriptionList.find_all('dt'), descriptionList.find_all('dd')):
+			if dt == [] or dd == []:
+				continue
+			results[dt.text] = dd.text
+		return results
+
 
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
+	
 	
 
