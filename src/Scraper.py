@@ -179,10 +179,14 @@ class Scraper:
 		return self.getSoup().find_all('img')
 
 
+	def getImageByIndex(self, index):
+		image = self.getAllImages()[index]
+		return image['src']
+
+	def getImageByAttribute(self, attribute):
+		image = self.getSoup().find('img', attrs = attribute)
+		return image['src']
 
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
-	print(scraper.getAllImages()[0])
-	
-
