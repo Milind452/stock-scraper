@@ -121,11 +121,34 @@ class Scraper:
 			results.append(li.text.strip())
 		return results
 
+	def getAllOrderedLists(self):
+		return self.getSoup().find_all('ol')
+
+	def getOrderedListByIndex(self, index, asList = True):
+		orderedList = self.getAllOrderedLists()[index]
+		if not asList:
+			return orderedList
+		results = list()
+		for li in orderedList.find_all('li'):
+			if li == []:
+				continue
+			results.append(li.text.strip())
+		return results
+
+	def getOrderedListByAttribute(self, attribute, asList = True):
+		orderedList = self.getSoup().find('ol', attrs = attribute)
+		if not asList:
+			return orderedList
+		results = list()
+		for li in orderedList.find_all('li'):
+			if li == []:
+				continue
+			results.append(li.text.strip())
+		return results
+
 
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
-	# print(scraper.getAllUnorderedLists())
-	# print(scraper.getUnorderedListByIndex(1, True))
-	print(scraper.getUnorderedListByAttribute({'class' : 'menu_markethm'}, True))
+	
 
