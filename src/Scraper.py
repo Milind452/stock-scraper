@@ -96,19 +96,11 @@ class Scraper:
 			return span
 		return span.text
 
+	def getAllUnorderedLists(self):
+		return self.getSoup().find_all('ul')
+
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
-	# print(scraper.getAllTables())
-	# print(scraper.getTableByIndex(1), False)
-	# print(scraper.getTableByAttribute({'class' : 'mctable1'}))
-	# print(scraper.getAllAnchors())
-	# print(scraper.getAnchorByIndex(10, False))
-	# print(scraper.getAnchorByAttribute({'title' : 'Personal Tech'}))
-	# print(scraper.getAllDivs())
-	# print(scraper.getDivByIndex(0))
-	# print(scraper.getDivByIndex(0))
-	# print(scraper.getAllSpans())
-	# print(scraper.getSpanByIndex(0, False))
-	print(scraper.getSpanByAttribute({'class' : 'open_hamburger'}, False))
+	print(scraper.getAllUnorderedLists())
 
