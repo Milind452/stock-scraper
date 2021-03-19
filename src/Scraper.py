@@ -99,8 +99,21 @@ class Scraper:
 	def getAllUnorderedLists(self):
 		return self.getSoup().find_all('ul')
 
+	def getUnorderedListByIndex(self, index, asList = True):
+		unorderedList = self.getAllUnorderedLists()[index]
+		if not asList:
+			return unorderedList
+		results = list()
+		for li in unorderedList.find_all('li'):
+			if li == []:
+				continue
+			results.append(li.text.strip())
+		return results
+
+
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
-	print(scraper.getAllUnorderedLists())
+	# print(scraper.getAllUnorderedLists())
+	print(scraper.getUnorderedListByIndex(1, True))
 
