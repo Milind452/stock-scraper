@@ -31,10 +31,12 @@ class Scraper:
 		tables = self.getAllTables()[index]
 		results = dict()
 		for row in tables.find_all('tr'):
-			data = row.findAll('td')
-			if data == []:
-				continue
-			results[data[0].text] = [element.text for element in data[1:]]
+			head = row.find_all('th')
+			if head != []:
+				results[head[0].text] = [element.text for element in head[1:]]
+			data = row.find_all('td')
+			if data != []:
+				results[data[0].text] = [element.text for element in data[1:]]
 		return results
 
 	def getTableByAttribute(self, attribute, asDict = True):
@@ -45,10 +47,12 @@ class Scraper:
 		tables = self.getSoup().find('table', attrs = attribute)
 		results = dict()
 		for row in tables.find_all('tr'):
-			data = row.findAll('td')
-			if data == []:
-				continue
-			results[data[0].text] = [element.text for element in data[1:]]
+			head = row.find_all('th')
+			if head != []:
+				results[head[0].text] = [element.text for element in head[1:]]
+			data = row.find_all('td')
+			if data != []:
+				results[data[0].text] = [element.text for element in data[1:]]
 		return results
 
 	def getAllAnchors(self):
@@ -175,6 +179,8 @@ class Scraper:
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
-	
+	# print(scraper.getAllTables()[1])
+	print(scraper.getTableByIndex(1))
+	print(scraper.getTableByAttribute({'class' : 'mctable1'}))
 	
 
