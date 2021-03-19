@@ -110,10 +110,22 @@ class Scraper:
 			results.append(li.text.strip())
 		return results
 
+	def getUnorderedListByAttribute(self, attribute, asList = True):
+		unorderedList = self.getSoup().find('ul', attrs = attribute)
+		if not asList:
+			return unorderedList
+		results = list()
+		for li in unorderedList.find_all('li'):
+			if li == []:
+				continue
+			results.append(li.text.strip())
+		return results
+
 
 
 if __name__ == '__main__':
 	scraper = Scraper("https://www.moneycontrol.com/stocksmarketsindia/")
 	# print(scraper.getAllUnorderedLists())
-	print(scraper.getUnorderedListByIndex(1, True))
+	# print(scraper.getUnorderedListByIndex(1, True))
+	print(scraper.getUnorderedListByAttribute({'class' : 'menu_markethm'}, True))
 
